@@ -1,0 +1,11 @@
+<Solution>
+  <Project Path="FlociGcpTest.ApiService/FlociGcpTest.ApiService.csproj" />
+  <Project Path="FlociGcpTest.AppHost/FlociGcpTest.AppHost.csproj" />
+  <Project Path="FlociGcpTest.ServiceDefaults/FlociGcpTest.ServiceDefaults.csproj" />
+  <Folder Name="/src/">
+    <Project Path="src/Floci.Hosting.Gcp/Floci.Hosting.Gcp.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Floci.Hosting.Gcp.Tests/Floci.Hosting.Gcp.Tests.csproj" />
+  </Folder>
+</Solution>

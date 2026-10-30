@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Aspire.Hosting.Floci" Version="13.6.1-beta.938" />
+    <PackageReference Include="Google.Cloud.PubSub.V1" Version="3.39.0" />
+    <PackageReference Include="Google.Cloud.Storage.V1" Version="5.0.0" />
+    <PackageReference Include="Polly.Core" Version="8.8.0" />
+    <PackageReference Include="FluentValidation" Version="12.2.0" />
+    <InternalsVisibleTo Include="Floci.Hosting.Gcp.Tests" />
+  </ItemGroup>
+</Project>

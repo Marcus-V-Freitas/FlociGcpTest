@@ -1,0 +1,2 @@
+# Keep the text fixtures identical on Windows and Linux checkouts.
+**/samples/local.txt text eol=lf

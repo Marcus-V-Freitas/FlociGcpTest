@@ -1,0 +1,52 @@
+# @noRejectUnauthorized
+@HostAddress = http://localhost:5009
+@LocalBucketName = veragi
+
+### Create/Upload a file to Storage
+POST {{HostAddress}}/storage/upload?fileName=hello.txt
+Content-Type: application/json
+
+"This is a test file for GCP Storage Emulator."
+
+### List Storage files
+GET {{HostAddress}}/storage/list
+Accept: application/json
+
+### Publish a message to Pub/Sub
+POST {{HostAddress}}/pubsub/publish
+Content-Type: application/json
+
+"Hello GCP PubSub Emulator!"
+
+### Pull a message from Pub/Sub
+GET {{HostAddress}}/pubsub/pull
+Accept: application/json
+
+### Inspect real push deliveries (match MessageId returned by publish)
+GET {{HostAddress}}/pubsub/received
+
+### Download the uploaded content
+GET {{HostAddress}}/storage/download?fileName=hello.txt
+
+### Delete the uploaded object
+DELETE {{HostAddress}}/storage/object?fileName=hello.txt
+
+### List files from bucket-data/veragi (fixture: configure WithBucketFolder("./storage-fixture") in AppHost)
+GET {{HostAddress}}/storage/list?bucketName={{LocalBucketName}}
+
+> {%
+    client.test("Local bucket files are listed", function () {
+        client.assert(response.status === 200, "Expected HTTP 200");
+        client.assert(response.body.includes("samples/local.txt"), "Missing seeded object");
+    });
+%}
+
+### Read bucket-data/veragi/samples/local.txt without uploading through the API
+GET {{HostAddress}}/storage/download?bucketName={{LocalBucketName}}&fileName=samples/local.txt
+
+> {%
+    client.test("Local file content matches", function () {
+        client.assert(response.status === 200, "Expected HTTP 200");
+        client.assert(response.body === "Arquivo local do Cloud Storage: ação, café, ☁.\n", "Unexpected content");
+    });
+%}
